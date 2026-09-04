@@ -54,9 +54,9 @@ AZURE_SUBSCRIPTION_IDS=sub-id-1,sub-id-2
 
 # ── Azure (optional filter) ──
 # Limit discovery to specific Resource Groups. Must match the REAL
-# Azure RG name exactly (case-insensitive) -- e.g. "boldsign-dev", not
-# a human-friendly guess like "BoldSign Development".
-AZURE_RESOURCE_GROUPS=boldsign-dev,boldsign-payments
+# Azure RG name exactly (case-insensitive) -- e.g. "example dev", not
+# a human-friendly guess like "example dev".
+AZURE_RESOURCE_GROUPS=example-dev,example-payments
 
 # ── Reporting (optional — omit to keep the Executive Summary a plain
 #    templated sentence instead of an AI-written one; see §7) ─────────
@@ -139,7 +139,7 @@ The account also needs `roles/cloudasset.viewer` (or just the `cloudasset.assets
 ## 9. Known gotchas (found the hard way — worth knowing up front)
 
 - **`azure-mgmt-resource` import errors ("unknown location")**: this means a legacy `azure-common` package is fragmenting the `azure.*` namespace — a known conflict between `azure-common` (pre-2019 SDK style) and modern `azure-mgmt-*` packages (native namespace packages). The tool has a built-in fallback import path for this and will keep working correctly even with the conflict present (confirmed: reproduced this exact issue while testing this setup guide, and the tool auto-recovered). If you want to actually clean it up rather than rely on the fallback: `pip uninstall azure-common -y` then reinstall `azure-mgmt-resource` fresh.
-- **`AZURE_RESOURCE_GROUPS` filter matches nothing**: the value must be the *actual* Azure RG name (check the Portal), not a guessed display name. `boldsign-dev` ≠ `BoldSign Development`.
+- **`AZURE_RESOURCE_GROUPS` filter matches nothing**: the value must be the *actual* Azure RG name (check the Portal), not a guessed display name. `example-dev` ≠ `example Development`.
 - **Copy-pasting GUIDs from a wrapped terminal line**: characters get silently dropped. Copy `AZURE_CLIENT_ID`/`AZURE_CLIENT_SECRET`/`AZURE_TENANT_ID` directly from the Azure Portal's copy-icon, not by dragging across wrapped terminal text.
 - **VS Code/Pylance shows import errors even after `pip install`**: check the interpreter VS Code is pointed at (bottom-right corner, or `Ctrl+Shift+P → Python: Select Interpreter`) — it may differ from the one you installed into.
 
