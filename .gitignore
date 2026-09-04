@@ -1,0 +1,19 @@
+# --- Environments & Secrets ---
+.env
+venv/
+env/
+__pycache__/
+*.pyc
+
+# --- Local Outputs ---
+output/
+*.drawio
+*.svg
+*.png
+
+# --- TEMPORARILY WITHHELD CODE ---
+# These folders will stay on your computer, but will NOT upload to GitHub
+azure/
+gcp/
+gcp-auto/
+multi-cloud-hybrid/
